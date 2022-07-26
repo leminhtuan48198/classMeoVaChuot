@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Rat{
+        name;
+        weight;
+        speed;
+        isAlive;
+
+        constructor(name, weight, speed, isAlive) {
+            this.name = name;
+            this.weight = weight;
+            this.speed = speed;
+            this.isAlive = isAlive;
+        }
+        makeSound(){
+            if (this.isAlive){
+            document.write(this.name+" chit, chit"+'<br>')
+        }
+        }
+    }
+    class Cat{
+        name;
+        weight;
+        speed;
+        mouse;
+
+        constructor(name, weight, speed) {
+            this.name = name;
+            this.weight = weight;
+            this.speed = speed;
+            this.mouse=""
+        }
+        makeSound(){
+            document.write(this.name+" meow meow"+'<br>')
+        }
+        catchRat(rat){
+            if(this.speed>rat.speed&&rat.isAlive){
+                document.write("Meo da bat duoc "+rat.name+'<br>')
+                this.mouse=rat.name
+            }else {
+                document.write("Meo khong bat duoc "+rat.name+'<br>')
+                this.mouse=""
+            }
+        }
+        eatRat(rat){
+            if(rat.isAlive&&this.mouse==rat.name){
+                document.write("Meo an chuot"+"<br>")
+                rat.isAlive=false;
+                this.weight+=rat.weight;
+            } else{
+                document.write("Meo khong the an "+rat.name+"<br>")
+            }
+        }
+    }
+    let meo=new Cat("meo",4,30)
+    let rat1=new Rat("chuot 1",1,20,true)
+    let rat2=new Rat("chuot 2",1,20,true)
+    let rat3=new Rat("chuot 3",1,20,true)
+    let rat4=new Rat("chuot 4",1,40,true)
+    document.write("Khoi luong cua meo "+meo.weight+"<br>")
+    meo.eatRat(rat1)
+    meo.catchRat(rat1)
+    meo.eatRat(rat2)
+    meo.eatRat(rat1)
+    meo.catchRat(rat1)
+    meo.catchRat(rat2)
+    meo.catchRat(rat3)
+    meo.eatRat(rat2)
+    meo.catchRat(rat1)
+    document.write("Khoi luong cua meo "+meo.weight+"<br>")
+    meo.catchRat(rat4)
+    rat1.makeSound()
+    rat2.makeSound()
+meo.makeSound()
+
+</script>
+</body>
+</html>
